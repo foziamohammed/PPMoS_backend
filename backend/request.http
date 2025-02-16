@@ -1,0 +1,20 @@
+### login
+post http://localhost:8000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "estifanos@gmail.com",
+    "password": "password"
+}
+
+### sign-up
+POST http://localhost:8000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "estifanos",
+  "email": "estifanos@gmail.com",
+  "role": "student",
+  "phone": "1234567890",
+  "password": "password"
+}
