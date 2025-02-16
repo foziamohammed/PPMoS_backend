@@ -12,6 +12,7 @@ const verifyToken = async (req, res, next) => {
             return res.status(401).json({ message: "Unauthorized" });
         }
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        console.log(decoded);
         req.user = decoded;
         next();
     } catch (error) {
@@ -25,13 +26,7 @@ const auth = async (req, res, next) => {
             return res.status(401).json({ message: "Unauthorized" });
         }
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const user = await User.findOne({ _id: decoded.id });
-
-        if (!user) {
-            throw new Error();
-        }
-
-        req.user = user;
+        req.user = decoded;
         next();
     } catch (error) {
         res.status(401).json({ message: "Please authenticate." });
