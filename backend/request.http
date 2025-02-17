@@ -3,7 +3,18 @@ post http://localhost:8000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "estifanos@gmail.com",
+    "username": "estifanos",
+    "role": "student",
+    "password": "password"
+}
+
+### login
+post http://localhost:8000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "ted",
+    "role": "advisor",
     "password": "password"
 }
 
@@ -19,4 +30,40 @@ Content-Type: application/json
   "password": "password"
 }
 
-👍
+
+#####################################################
+
+### create meeting
+POST http://localhost:8000/api/meetings/createmeeting
+Content-Type: application/json
+
+{
+  "user": {
+    "id": "student123",
+    "name": "John Doe"
+  },
+  "advisorId": "12345",
+  "dateTime": "2025-02-20T10:00:00Z",
+  "agenda": "Discuss project progress",
+  "place": "Room 101"
+}
+
+### get meetings for student
+GET http://localhost:8000/api/meetings/students/student123/requests
+
+
+### get meetings for advisor
+GET http://localhost:8000/api/meetings/advisors/12345
+
+
+### approval
+PUT http://localhost:8000/api/meetings/67b371f58f8e3a54a75524bf/approve
+
+### decline
+PUT http://localhost:8000/api/meetings/67b370e06ea77a90021fa4ce/decline
+
+### get approved meetings student
+GET http://localhost:8000/api/meetings/students/student123/schedules
+
+### get approved meetings advisor
+GET http://localhost:8000/api/meetings/advisors/12345/schedules

@@ -11,9 +11,6 @@ router.put('/:id/approve', meetingController.approveMeetingRequest);
 
 router.put('/:id/decline', meetingController.declineMeetingRequest);
 
-
-router.get('/advisors/:advisorId/schedules', meetingController.getAdvisorSchedules);
-
 // routes/meetingRoutes.js
 router.get('/students/:studentId/schedules', meetingController.getStudentSchedules);
 

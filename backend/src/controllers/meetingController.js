@@ -4,20 +4,21 @@ const sendEmail = require('../utils/email');  // import the email utility
 
 
 exports.createMeetingRequest = async (req, res) => {
-    const studentId = req.user.id;
-    const studentName = req.user.name;
+    // const studentId = req.user.id;
+    // const studentName = req.user.name;
     
     // Get form data from request body
-    const { advisorId, dateTime, agenda, place } = req.body;
+    const { user, advisorId, dateTime, agenda, place } = req.body;
 
-    if (!studentName || !studentId || !advisorId || !dateTime) {
+    // if (!studentName || !studentId || !advisorId || !dateTime) {
+    if (!user.name || !user.id || !advisorId || !dateTime) {
         return res.status(400).json({ message: 'All required fields are missing.' });
     }
 
     try {
         const newRequest = await meetingService.createMeeting({
-            studentName,
-            studentId,
+            studentName: user.name,
+            studentId: user.id,
             advisorId,
             dateTime,
             agenda,
