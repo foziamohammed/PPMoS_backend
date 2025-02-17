@@ -14,6 +14,10 @@ const milestoneSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    requirement: {
+        type: String,
+        required: true,
+    },
     dueDate: {
         type: Date,
         required: true,
