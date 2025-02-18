@@ -2,18 +2,22 @@ const Milestone = require("../models/milestone");
 
 const addMilestone = async (req, res) => {
     try {
-        const { title, description, requirement, dueDate, status } = req.body;
-        const milestone = await Milestone.create({ studentId: req.user.id, requirement, title, description, dueDate, status });
+        const { title, stage, description, requirement, dueDate, status } = req.body;
+        const milestone = await Milestone.create({ studentId: req.user.id, stage, requirement, title, description, dueDate, status });
         res.status(201).json({ milestone });
     } catch (error) {
+        console.error("Error adding milestone:", error);
         res.status(500).json({ message: "Something went wrong." });
     }
 };
 
-const getMilestones = async (req, res) => {
+const getMilestone = async (req, res) => {
     try {
-        const milestones = await Milestone.find({ studentId: req.user.id });
-        res.status(200).json({ milestones });
+        const milestone = await Milestone.findOne({ studentId: req.user.id });
+        if (!milestone) {
+            return res.status(404).json({ message: "Milestone not found" });
+        }
+        res.status(200).json({ milestone });
     } catch (error) {
         res.status(500).json({ message: "Something went wrong." });
     }
@@ -21,11 +25,10 @@ const getMilestones = async (req, res) => {
 
 const updateMilestone = async (req, res) => {
     try {
-        const { id } = req.params;
-        const { title, description, requirement, dueDate, status } = req.body;
+        const { title, stage, description, requirement, dueDate, status } = req.body;
         const milestone = await Milestone.findOneAndUpdate(
-            { _id: id, studentId: req.user.id },
-            { title, description, requirement, dueDate, status },
+            { studentId: req.user.id },
+            { title, stage, description, requirement, dueDate, status },
             { new: true, runValidators: true }
         );
         if (!milestone) {
@@ -39,10 +42,9 @@ const updateMilestone = async (req, res) => {
 
 const updateMilestoneStatus = async (req, res) => {
     try {
-        const { id } = req.params;
         const { status } = req.body;
         const milestone = await Milestone.findOneAndUpdate(
-            { _id: id, studentId: req.user.id },
+            { studentId: req.user.id },
             { status },
             { new: true, runValidators: true }
         );
@@ -55,4 +57,4 @@ const updateMilestoneStatus = async (req, res) => {
     }
 };
 
-module.exports = { addMilestone, getMilestones, updateMilestone, updateMilestoneStatus };
+module.exports = { addMilestone, getMilestone, updateMilestone, updateMilestoneStatus };

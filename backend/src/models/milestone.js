@@ -10,6 +10,10 @@ const milestoneSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    stage: {
+        type: String,
+        required: true,
+    },
     description: {
         type: String,
         required: true,
