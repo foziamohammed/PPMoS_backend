@@ -1,9 +1,7 @@
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 const signIn = require("../utils/signin");
 
 const login = async (req, res) => {
-    const { role, username, password } = req.body;
+  const { role, username, password } = req.body;
 
   try {
     const token = await signIn(role, username, password);

@@ -17,14 +17,13 @@ const examRoutes = require('./routes/examRoutes');
 connectDB();
 const app = express();
 dotenv.config();
-
 //Middlewares
 app.use(express.json());
 app.use(cors());
 
 //Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
+app.use('/api/user', userRoutes);
 app.use('/api/milestones', milestoneRoutes);
 app.use('/api/grades', gradeRoutes);
 app.use('/api/meetings', meetingRoutes);
