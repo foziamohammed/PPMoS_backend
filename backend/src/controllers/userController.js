@@ -20,5 +20,21 @@ const updateUser = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 };
+const getUser = async (req, res) => {
+    const user = req.user;
 
-module.exports = { updateUser };
+    try {
+        const response = await axios.post('http://localhost:9000/api/user/get', { user });
+
+        if (response.status === 200) {
+            res.status(200).json(response.data);
+        } else {
+            res.status(400).json({ message: 'Failed to fetch user data' });
+        }
+    } catch (error) {
+        console.error('Error fetching user data:', error.message);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
+module.exports = { updateUser, getUser };
