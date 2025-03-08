@@ -13,6 +13,7 @@ const dissertationRoutes = require('./routes/dissertationRoutes');
 const gradeRoutes = require('./routes/gradeRoutes');
 const meetingRoutes = require('./routes/meetingRoutes');
 const examRoutes = require('./routes/examRoutes');
+const emailRoutes = require('./routes/emailRoutes');
 
 connectDB();
 const app = express();
@@ -29,6 +30,7 @@ app.use('/api/grades', gradeRoutes);
 app.use('/api/meetings', meetingRoutes);
 app.use('/api/notes', noteRoutes);
 app.use('/api/exams', examRoutes);
+app.use('/api/email', emailRoutes);
 app.use('/api/proposals', proposalRoutes);
 app.use('/api/progresses', progressRoutes);
 app.use('/api/publications', publicationRoutes);
