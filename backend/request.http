@@ -1,5 +1,5 @@
 ### login
-post http://localhost:8000/api/auth/login
+post http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
@@ -67,3 +67,34 @@ GET http://localhost:8000/api/meetings/students/student123/schedules
 
 ### get approved meetings advisor
 GET http://localhost:8000/api/meetings/advisors/12345/schedules
+
+
+### Testing for the Milestones task
+get http://localhost:5000/api/user/gets
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjM4NzQ3NWQyZGQ5YzgyZDg5MDE1MiIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzQwOTQxMjg2LCJleHAiOjE3NDA5NDQ4ODZ9.CKW8nvD_bTB33HTirTxzdeT7Fom9dQN4Sf_WwlXMI9o
+
+
+### get by id
+get http://localhost:5000/api/user/get/67b387475d2dd9c82d890152
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjM4NzQ3NWQyZGQ5YzgyZDg5MDE1MiIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzQwOTQxMjg2LCJleHAiOjE3NDA5NDQ4ODZ9.CKW8nvD_bTB33HTirTxzdeT7Fom9dQN4Sf_WwlXMI9o
+
+
+### get milestone
+get http://localhost:5000/api/milestones/get
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjM4NzQ3NWQyZGQ5YzgyZDg5MDE1MiIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzQwOTQxMjg2LCJleHAiOjE3NDA5NDQ4ODZ9.CKW8nvD_bTB33HTirTxzdeT7Fom9dQN4Sf_WwlXMI9o
+
+
+### edit milestone
+post http://localhost:5000/api/milestones/add?edit=true&id=67c401ca012e1e9725743733
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjM4Nzk3NWQyZGQ5YzgyZDg5MDE1NyIsInJvbGUiOiJhZHZpc29yIiwiaWF0IjoxNzQwOTQ5MTk4LCJleHAiOjE3NDA5NTI3OTh9.gmoR8njRr6G8v2UgyzxsNkubnAaYBK5Dy0FtvpALZd8
+
+
+{
+  "title": "Progress Presentation 1",
+  "stage": 2,
+  "description": "A presentation of the progress the student has made",
+  "requirement": "Projector, powerpoint, computer",
+  "dueDate": "1/3/2025",
+  "status": "pending"
+}
